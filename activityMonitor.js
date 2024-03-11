@@ -2,7 +2,8 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 
 const logFilePath = 'activityMonitor.log';
-
+const refreshRate = 100;
+const refreshRateForFile = 60000
 function getProcessesInfo() {
     let output;
     if (process.platform === 'win32') {
@@ -20,17 +21,18 @@ function appendToLogFile(info) {
 }
 
 function displayTopProcess() {
-    const processInfo = getProcessesInfo();
-    process.stdout.write('\r' + processInfo); 
+  const processInfo = getProcessesInfo();
+  const truncatedOutput = processInfo.slice(0, process.stdout.columns);
+  process.stdout.write('\r' + truncatedOutput.padEnd(process.stdout.columns - 1));
 }
 
 function main() {
-    setInterval(displayTopProcess, 100); 
+    setInterval(displayTopProcess, refreshRate); 
 
     setInterval(() => {
         const processInfo = getProcessesInfo();
         appendToLogFile(processInfo);
-    }, 60000); 
+    }, refreshRateForFile); 
 }
 
 main();
