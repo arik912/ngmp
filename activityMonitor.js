@@ -2,8 +2,10 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 
 const logFilePath = 'activityMonitor.log';
-const refreshRate = 100;
-const refreshRateForFile = 60000
+const refreshRate = Number(process.argv[2])||100;
+const refreshRateForFile = Number(process.argv[3])||60000
+
+
 function getProcessesInfo() {
     let output;
     if (process.platform === 'win32') {
