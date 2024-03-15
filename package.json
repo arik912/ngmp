@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "echo \"Current Node version: $(node -v)\" && nodemon index.js"
+    "start": "echo \"Current Node version: $(node -v)\" && nodemon index.js",
+    "task1": "nodemon ./HT03/task1.js"
 },
   "author": "",
   "license": "ISC",
