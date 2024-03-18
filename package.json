@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "echo \"Current Node version: $(node -v)\" && nodemon index.js"
-},
+    "start": "echo \"Current Node version: $(node -v)\" && nodemon index.js",
+    "task1": "nodemon ./HT03/task1.js",
+    "task2": "nodemon ./HT03/task2.js",
+    "task3": "nodemon ./HT03/task3.js"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10"
   }
 }
