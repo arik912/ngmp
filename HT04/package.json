@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "test": "jest",
-    "test:e2e": "jest e2e.test.js",
+    "test:e2e": "jest public-holidays.service.integration.test",
     "test:coverage": "jest --coverage"
   },
   "author": "",
