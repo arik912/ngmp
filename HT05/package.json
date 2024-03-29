@@ -6,11 +6,15 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "./node_modules/.bin/pm2 start server.js --name ngmp-network-app",
+    "stop": "./node_modules/.bin/pm2 stop ngmp-network-app"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "pm2": "^5.3.1"
   }
 }
