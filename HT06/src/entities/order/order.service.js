@@ -1,7 +1,7 @@
-import * as db from './order.db.js';
+import * as orderRepository from './order.model';
 
-export function createOrder(orderData) {
-  return db.createOrder({
+export function createOrder(orderData){
+  return orderRepository.createOrder({
     ...orderData,
     status: 'created',
   });

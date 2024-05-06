@@ -1,14 +1,29 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { rootRouter } from './src/router.js';
+import { init } from './init';
+import { rootRouter } from './src/router';
 
+process.on('uncaughtException', async (error) => {
+  console.error('UncaughtException', error);
+  await process.exit(1);
+});
 
-const app = express();
+process.on('exit', (code) => {
+  console.error(`Exit with code: ${code}`);
+});
 
-app.use(bodyParser.json());
+init().then(async () => {
+  try {
+    const app = express();
 
-app.use(rootRouter);
+    app.use(bodyParser.json());
 
-app.listen(3000, () => {
-  console.log('Server is started');
+    app.use(rootRouter);
+
+    app.listen(3000, () => {
+      console.log('Server is started');
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });

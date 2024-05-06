@@ -1,22 +1,21 @@
-import * as cartService from './cart.service.js';
+import * as cartService from './cart.service';
 
-export function getUserCart(req, res) {
-  const cart = cartService.findOrCreateByUserId(req.user.id);
+export async function getUserCart(req, res) {
+  const cart = await cartService.findOrCreateByUserId(req.user.id);
   res.json(cart);
 }
 
-export function updateUserCart(req, res) {
-  const updatedCart = cartService.updateByUserId(req.user.id, req.body);
+export async function updateUserCart(req, res) {
+  const updatedCart = await cartService.updateByUserId(req.user.id, req.body);
   res.json(updatedCart);
 }
 
-export function deleteUserCart(req, res) {
-  cartService.deleteByUserId(req.user.id);
+export async function deleteUserCart(req, res) {
+  await cartService.deleteByUserId(req.user.id);
   res.json({ success: true });
 }
 
-export function checkout(req, res) {
-  const order = cartService.checkout(req.user.id, req.body);
+export async function checkout(req, res) {
+  const order = await cartService.checkout(req.user.id, req.body);
   res.json({ order });
 }
-
