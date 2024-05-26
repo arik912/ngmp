@@ -7,21 +7,21 @@ export class TestDataSeeder extends Seeder {
 
   async run(em: EntityManager): Promise<void> {
     const user = em.create(User, {
-      id: 'generated_test_id',
+      id: 'b705c113-de0d-4d56-9442-813363f01dda',
       email: 'test.user@gmail.com',
       password: '$2a$10$jVRwjou3Wf9LbzfAGKa6EeqG3WdA7FE11uan3Itc022gH.VO2Qdeq'
     });
 
-    const iphone = em.create(Product, {
-      title: 'Iphone14',
+    const audi = em.create(Product, {
+      title: 'Audi RSQ8',
       description:'',
-      price: 1400,
+      price: 200000,
     });
 
-    const samsung = em.create(Product, {
-      title: 'Samsung a5',
+    const porsche = em.create(Product, {
+      title: 'Porsche Cayenne',
       description:'',
-      price: 800,
+      price: 100000,
     });
   }
 }
