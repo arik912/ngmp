@@ -2,6 +2,22 @@ import * as db from './cart.db.js';
 import * as orderService from '../order/order.service.js';
 import * as productService from '../product/product.service.js';
 
+export async function toFullCart(cart){
+  const items = await cartService.getCartItems(cart.id);
+
+  return {
+    ...cart,
+    items,
+  };
+}
+
+export function toDtoCart(cart) {
+  return {
+    id: cart.id,
+    items: cart.items,
+  };
+}
+
 
 export function calculateCartTotalPrice(cart) {
   return cart ? cart.items.reduce((acc, { product: { price }, count }) => {
