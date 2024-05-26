@@ -1,10 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
-import { ForbiddenException } from '../exceptions/ForbiddenException';
-import { UnauthorizedException } from '../exceptions/UnauthorizedException';
-import { BaseException } from '../exceptions/BaseException';
-import { NotFoundException } from '../exceptions/NotFoundException';
-import { ValidationException } from '../exceptions/ValidationException';
+
+import {
+  BaseException,
+  ForbiddenException,
+  UnauthorizedException,
+  NotFoundException,
+  ValidationException
+} from '../exceptions';
 import { responseWrapper } from '../utils/responseWrapper';
+import logger from '../core/logger';
 
 function getStatusByException(err: BaseException): number {
   if (err instanceof NotFoundException) {
@@ -23,11 +27,11 @@ function getStatusByException(err: BaseException): number {
 }
 
 export function errorHandler(err: unknown, req: Request, res: Response, next: NextFunction) {
-  console.log('Error received:', err);
+  logger.error('Error received:', err);
   if (err instanceof BaseException) {
     res.status(getStatusByException(err)).send(responseWrapper(null, err.message));
     return;
   }
-  
+
   res.status(500).send(responseWrapper(null, 'Internal Server error'));
 }

@@ -5,7 +5,6 @@ import { UnauthorizedException } from '../exceptions/UnauthorizedException';
 import { UserEntity } from 'src/resources/user/user.entity';
 import appConfig from '../../src/config/app.config';
 
-
 export async function authMiddleware(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
 
